@@ -1,0 +1,156 @@
+main {
+  width: calc(100vw - 232px);
+  overflow-y: hidden;
+}
+
+.d-noneHead {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.cp {
+  cursor: pointer;
+}
+
+header {
+  background-color: var(--white);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  background-color: var(--white);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  padding: 10px 25px 5px 15px;
+  height: 96px !important;
+  gap: 50px;
+}
+
+.displayNone {
+  display: none !important;
+}
+
+header p {
+  font-size: 20px;
+}
+
+.header-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-right img {
+  height: 32px;
+  width: 32px;
+}
+
+.header-right img:hover {
+  transform: scale(1.2);
+}
+
+.header-right-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 3px var(--secundary-color);
+  height: 50px;
+  font-weight: 700;
+  width: 50px;
+  border-radius: 50%;
+  color: var(--highlight-color);
+  font-size: 20px;
+}
+
+.header-right-user:hover {
+  background-color: #e7e7e7;
+}
+
+.container-dropdown-menu {
+  display: none;
+}
+
+.logo-small-screen {
+  display: none;
+}
+
+.help-img-link {
+  background-color: transparent !important;
+}
+
+.headerDropdownOption {
+  position: fixed;
+  top: 97px;
+  right: 40px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: var(--primary-color);
+  border-radius: 20px 0px 20px 20px;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+  z-index: 1;
+}
+
+.headerDropdownOption a {
+  text-decoration: none;
+  padding: 8px 16px;
+  color: var(--lightgrey);
+}
+
+.headerDropdownOption a:hover {
+  background-color: #2b3b59;
+}
+
+.header-description {
+  margin: 0 !important;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: space-around !important;
+  margin-left: 20px;
+  padding: 15px;
+}
+
+@media (max-width: 777px) {
+  .d-none-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  main {
+    width: 100vw;
+  }
+
+  .mobile-logo {
+    display: flex;
+    height: 39px;
+    width: 32px;
+  }
+
+  header {
+    padding: 0 clamp(0.625rem, 0.0568rem + 2.8409vw, 1.875rem) 0
+      clamp(0.625rem, 0.0568rem + 2.8409vw, 1.875rem);
+    height: 80px;
+  }
+
+  .headerDropdownOption {
+    top: 80px;
+    right: 0;
+  }
+}
+.mobile-logo {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-logo {
+    display: block;
+  }
+}

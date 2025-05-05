@@ -1,0 +1,663 @@
+.red {
+  color: #ff8190;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.middleLine {
+  width: 0;
+  height: 424px;
+  border: 1px solid #d1d1d1;
+}
+
+.addTaskContent {
+  flex-direction: column;
+  margin-inline: auto;
+  font-size: 20px;
+  max-width: 976.25px;
+}
+
+.addTaskContent h1 {
+  margin-bottom: 40px;
+}
+
+.addTaskLeft {
+  width: 440px;
+  flex-direction: column;
+}
+
+.addTaskBody {
+  column-gap: 48px;
+  max-width: 976px;
+  width: 976.25px;
+}
+
+.addTaskRight {
+  width: 440px;
+  flex-direction: column;
+}
+
+.addTaskSection {
+  overflow: hidden;
+}
+
+#electedContacts {
+  flex-wrap: wrap;
+}
+
+.addTaskContent input {
+  border-radius: 10px;
+  height: 48px;
+  padding-inline: 21px;
+  padding-block: 12px;
+  border: 1px solid #d1d1d1;
+  margin-bottom: 20px;
+  margin-top: 4px;
+  font-size: 20px;
+}
+
+.addTaskContent input::placeholder {
+  color: #d1d1d1;
+}
+
+.addTaskContent textarea {
+  border-radius: 10px;
+  height: 120px;
+  padding-inline: 21px;
+  padding-block: 12px;
+  border: 1px solid #d1d1d1;
+  margin-bottom: 20px;
+  margin-top: 4px;
+  font-size: 20px;
+}
+
+.addTaskContent textarea::placeholder {
+  color: #d1d1d1;
+}
+
+.addTaskContent select {
+  border-radius: 10px;
+  height: 48px;
+  padding-inline: 21px;
+  padding-block: 12px;
+  border: 1px solid #d1d1d1;
+  margin-bottom: 8px;
+  margin-top: 4px;
+  font-size: 20px;
+}
+
+.createTask {
+  background-color: #2a3647 !important;
+  color: #ffffff;
+  width: 183px !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.clear {
+  background-color: #f6f7f8 !important;
+  color: #2a3647;
+  width: 110px !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.addTaskContent button {
+  height: 56px;
+  width: 136px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: 1px solid #d1d1d1;
+  margin-bottom: 20px;
+  margin-top: 4px;
+  font-size: 20px;
+}
+
+.addTaskContent button:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+}
+
+.addTaskContent p {
+  margin: 0;
+}
+
+.note {
+  font-size: 16px;
+  vertical-align: sub;
+}
+
+.addTaskFooter {
+  margin-top: 0px;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 50px;
+  max-width: 976px;
+  width: 100%;
+}
+
+.addTaskSubmit {
+  width: 309px;
+}
+
+.addTaskSubmit img {
+  height: 24px;
+  width: 24px;
+  margin-left: 3px;
+}
+
+.addTaskNote {
+  height: 24px;
+}
+
+#addTaskForm {
+  max-height: 870px;
+  overflow: hidden;
+}
+
+#subTaskView {
+  max-height: 100px;
+  overflow-y: overlay;
+  padding: 0;
+}
+
+#addTaskDate:hover {
+  cursor: pointer;
+}
+
+#addTitleInput,
+#addTaskDiscription,
+#addTaskContactSelect,
+#addTaskCategory {
+  width: auto;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+#addTaskContactSelect {
+  background: url("../assets/img/arrow_drop_down.png") no-repeat right 15px
+    center;
+}
+
+#addTaskContactSelect:focus {
+  background: url("../assets/img/arrow_drop_up.png") no-repeat right 15px center;
+}
+
+#addTaskCategory {
+  background-image: url("../assets/img/arrow_drop_down.png");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-color: white;
+}
+
+#addTaskCategory:focus {
+  background-image: url("../assets/img/arrow_drop_up.png");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-color: white;
+}
+
+.colormedium {
+  background-color: #ffa800 !important;
+  color: #ffffff !important;
+}
+
+.colorurgent {
+  background-color: #ff3d00 !important;
+  color: #ffffff !important;
+}
+
+.colorlow {
+  background-color: #7ae229 !important;
+  color: #ffffff !important;
+}
+
+.subTaskPlus {
+  height: 24px;
+  width: 24px;
+  padding-right: 16px;
+  box-sizing: unset;
+}
+
+.subTaskCross {
+  height: 24px;
+  width: 24px;
+  padding-right: 8px;
+  z-index: 1;
+  box-sizing: unset;
+}
+
+.subTaskCross:hover,
+.subTaskCheck:hover {
+  cursor: pointer;
+}
+
+.subTaskCheck {
+  height: 14px;
+  width: 16px;
+  padding-left: 10px;
+  padding-right: 16px;
+  z-index: 1;
+  box-sizing: unset;
+}
+
+#subTaskAdd {
+  border: none;
+  height: 24px;
+  margin: 0;
+  width: 100%;
+}
+
+#subTaskAdd:focus {
+  border: none;
+  outline: none;
+}
+
+.subTask {
+  background-color: #ffffff;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  height: 48px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.subTaskPlus:hover {
+  cursor: pointer;
+}
+
+.middleLineShort {
+  width: 0;
+  height: 24px;
+  border: 1px solid #d1d1d1;
+}
+
+#urgentWhite,
+#urgentColor,
+#mediumWhite,
+#mediumColor,
+#lowWhite,
+#lowColor {
+  width: 20px;
+  height: auto;
+}
+
+.assingedField {
+  z-index: 5;
+  height: 48px;
+  align-items: center;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.assingedField img {
+  margin-left: -20px;
+  height: 5px;
+  width: 8px;
+}
+
+.fixed-header {
+  position: sticky;
+  top: 0;
+}
+
+#addTaskSide {
+  padding-top: 110px;
+  padding-left: 91px;
+}
+
+.required {
+  font-size: 14px;
+  color: #ff8190;
+  margin-top: -20px !important;
+  margin-bottom: 3px !important;
+}
+
+.outlineRed {
+  border: 1px solid #ff8190 !important;
+}
+
+#addTasktitleInput,
+#addTaskDate,
+#addTaskCategory {
+  margin-bottom: 25px;
+}
+
+.assingedInput {
+  width: 100%;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+
+#assinged::placeholder {
+  color: #000000;
+}
+
+.assingedInput:focus ~ .icon {
+  transform: rotate(180deg);
+}
+
+#assinged:focus::placeholder {
+  color: transparent;
+}
+
+.assingUser {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.assingLeft {
+  align-items: center;
+  gap: 15px;
+  margin-left: 15px;
+  padding: 5px;
+}
+
+#assingedList {
+  max-height: 250px;
+  width: 440px;
+  overflow-y: auto;
+  background-color: #ffffff;
+  z-index: 5;
+}
+
+.assingedList:hover {
+  cursor: pointer;
+}
+
+.assingedCheck {
+  margin-right: 15px;
+}
+
+.container {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding-left: 0;
+  margin-bottom: 2px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 15px;
+  left: 380px;
+  height: 16px;
+  width: 16px;
+}
+
+.backgroundAssing {
+  background-color: #2a3647;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+.container:hover input ~ .assingLeft {
+  background-color: #ccc;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border: 1px solid #29abe2;
+}
+
+.scrollhidden {
+  overflow: hidden;
+}
+
+@media (max-width: 1300px) {
+  .addTaskSection {
+    overflow-y: auto;
+  }
+
+  .addTaskBody {
+    flex-direction: column !important;
+    width: 440px;
+    margin: auto;
+  }
+
+  #addTaskForm {
+    max-height: unset;
+  }
+
+  .addTaskFooter {
+    width: 440px !important;
+    position: unset;
+    padding-bottom: 80px;
+    margin-inline: 70px;
+    margin-top: 5px;
+  }
+
+  #addTaskForm {
+    max-height: unset;
+  }
+
+  .middleLine {
+    display: none;
+  }
+
+  .addTaskContent {
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .addTaskMobile {
+    display: flex;
+  }
+
+  .addTask {
+    display: none;
+  }
+
+  .addTaskContent input,
+  .addTaskContent textarea,
+  .addTaskContent button,
+  .addTaskContent select {
+    font-size: 16px;
+  }
+
+  body {
+    width: 100vw;
+  }
+
+  .note {
+    display: none;
+  }
+
+  .addTaskSection {
+    width: 580px !important;
+  }
+
+  .headerResponsiv {
+    margin-inline: 70px !important;
+  }
+}
+
+.headerResponsiv {
+  margin-top: 64px !important;
+}
+
+::-webkit-scrollbar {
+  width: 8px !important;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #bdbdbd;
+  cursor: pointer;
+}
+::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.addTaskHeader {
+  margin: 0;
+}
+
+.addTaskHeader {
+  margin: 0;
+}
+
+.confirmation {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 74px;
+  width: 326px;
+  position: fixed;
+  top: 45%;
+  right: 35%;
+  background-color: #2a3647;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 20px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1001;
+}
+
+.confirmation.show {
+  opacity: 1;
+}
+
+.confirmation.hidden {
+  display: none;
+}
+
+.conformationImg {
+  height: 30px;
+  width: 30px;
+}
+
+@media (max-width: 600px) {
+  #hideAssignlist {
+    width: 800px;
+  }
+
+  .addTaskBody,
+  .addTaskFooter {
+    margin: auto;
+  }
+}
+
+.addTaskContent {
+  flex-direction: column;
+  font-size: 20px;
+  max-width: 976.25px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 450px) {
+  .white {
+    filter: unset;
+  }
+
+  .addTaskContent {
+    font-size: 16px;
+  }
+
+  .addTaskFooter {
+    width: 100% !important;
+  }
+
+  .container,
+  .assingUser,
+  .assingedList {
+    width: auto;
+  }
+
+  .checkmark {
+    left: 290px;
+  }
+
+  #addTaskSide {
+    margin-inline: 0 !important;
+  }
+
+  .addTaskLeft,
+  .addTaskRight {
+    width: 95vw;
+    margin-inline: 8px;
+  }
+
+  .addTaskHeader {
+    margin-left: 8px;
+  }
+
+  .addTaskSubmit {
+    margin-right: 8px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-logo {
+    display: block;
+  }
+}
+
+@media (max-width: 1024px) {
+  #addTaskSide {
+    justify-content: center;
+    padding: 0;
+    margin-top: 40px;
+    margin-inline: 16px;
+  }
+
+  .addTaskHeader {
+    font-size: 47px;
+  }
+}
+
+@media (max-height: 920px) and (min-width: 1300px) {
+  .addTaskFooter {
+    position: absolute;
+    top: 800px;
+  }
+}
+
+@media (max-height: 960px) {
+  #subTaskView {
+    max-height: 50px;
+  }
+
+  .assingedList {
+    max-height: 100px !important;
+  }
+}
+
+@media (max-height: 1050px) {
+  .assingedList {
+    max-height: 100px !important;
+    min-height: 50px;
+  }
+}

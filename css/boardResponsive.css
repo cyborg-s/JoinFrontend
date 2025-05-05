@@ -1,0 +1,177 @@
+@media (min-width: 1024px) {
+  main {
+    width: calc(100vw - 232px);
+  }
+
+  .columnHeadLine {
+    padding-inline: 84.4785px;
+  }
+
+  .headerRight {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 1024px) {
+  main {
+    width: 100vw;
+  }
+
+  .d-none-mobile {
+    display: none;
+  }
+
+  header {
+    padding: 0 16px;
+    height: 10vh;
+  }
+
+  .column {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .findTask {
+    display: none;
+  }
+
+  .findTaskMobile {
+    display: flex;
+    width: 100%;
+  }
+
+  .headerRight {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .headerMobile {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 700px) {
+  .columnHeadLine {
+    flex-direction: column;
+    padding-inline: 16px;
+  }
+
+  .column {
+    width: 100%;
+  }
+
+  .headerMobile {
+    font-size: 28px;
+  }
+
+  .findTaskMobile {
+    width: 100%;
+    padding-inline: 8px;
+  }
+
+  .header-right-user {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .initialsDetails {
+    width: 36px;
+    height: 36px;
+  }
+
+  .columnHead h2 {
+    font-size: 18px;
+  }
+
+  .addTaskMobile {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.columnHeadLine {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.column {
+  flex: 1;
+  min-width: 280px;
+}
+
+@media (max-width: 700px) {
+  .columnHeadLine {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .noTask {
+    width: 214px;
+  }
+
+  .column {
+    width: 100%;
+  }
+
+  .dropSection {
+    display: flex;
+    overflow-x: scroll;
+  }
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 232px;
+  height: 100vh;
+  background-color: var(--primary-color);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 100%;
+    transform: translateY(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateY(0);
+  }
+
+  .bottom-menu-link {
+    text-align: center;
+  }
+}
+
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1100;
+}
+
+@media (max-width: 1024px) {
+  .hamburger {
+    display: block;
+  }
+}
+
+.findTaskInput,
+.findTaskInputMobile {
+  width: 100%;
+}
+
+.findTaskMobile {
+  padding-inline: 8px;
+}

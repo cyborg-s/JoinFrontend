@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join | Login</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
+    <link rel="stylesheet" href="./css/side_menu.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login-signup.css">
+    <script src="./js/signupdatabase.js"></script>
+    <script src="./js/signup.js"></script>
+    <script src="./js/contactsfirebase.js"></script>
+    <script src="js/login.js"></script>
+</head>
+<body>
+    <img class="logo-launch" src="imgs/join_logo_dark.png" alt="logo of Join">
+    <section class="container-login-signup dflex-c-c screen-animation">
+        <div class="log-in-overlay dflex-c-c column">
+            <div class="dflex-c-c column">
+                <h1>Log in</h1>
+                <div class="text-segment"></div>
+            </div>
+            <form class="input-container dflex-c-c column" id="addContactForm" onsubmit="login(event)">
+                <input id="email" class="inputfield" type="text" placeholder="Email"  required="" onkeyup="if (event.key === 'Enter') login(event)">
+                <div id="emailError" class="error-message"></div>
+            
+                <input id="password" class="inputfield" type="password" placeholder="Passwort"  required="" onkeyup="if (event.key === 'Enter') login(event)">
+                <div id="passwordError" class="error-message"></div>
+            
+                <div id="Loginerror" class="d-none"></div>
+                <div class="rememberMe"><input type="checkbox" id="remember-me"> <p>Remember Me</p></div>
+                <button type="button" class="btn-small cursor-pointer" onclick="login(event)">Log in</button>
+            </form>
+            <a onclick="guestLogin()">
+                <button type="button" class="btn-outline cursor-pointer">Guest Log in</button>
+            </a>
+        </div>
+    </section>
+
+    <section class="login-head screen-animation">
+        <div class="login-head-top-right dflex-c-c">
+            <span>Not a Join user?</span>
+            <a href="./sign_up.html">
+                <button class="btn-small fz-16px cursor-pointer">Sign up</button>
+            </a>
+        </div>
+    </section>
+
+    <section class="login-footer dflex-c-c screen-animation">
+        <a href="./privacy-police.html">Privacy Policy</a>
+        <a href="./legal_notice.html">Legal Notice</a>
+    </section>
+
+    <script src="js/signup.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (user?.remember == false){
+    localStorage.removeItem('user');
+  }
+  if (user?.token) {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/join/check-token/", {
+        method: "GET",
+        headers: {
+          Authorization: `Token ${user.token}`,
+        },
+      });
+
+      if (response.ok) {
+        // Token ist gültig → Weiterleitung
+        window.location.href = "./summary.html";
+      } else {
+        // Token ungültig → localStorage leeren
+        localStorage.removeItem("user");
+      }
+    } catch (error) {
+      console.error("Fehler beim Token-Check:", error);
+      localStorage.removeItem("user");
+    }
+  }
+});
+</script>
+
+</body>
+</html>

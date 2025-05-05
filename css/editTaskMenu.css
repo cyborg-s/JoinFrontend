@@ -1,0 +1,38 @@
+.editTaskX {
+  display: flex;
+  justify-content: end;
+}
+
+.editFooter {
+  justify-content: space-between;
+}
+
+.editSubtaskView {
+  height: 50px !important;
+}
+
+.editTask {
+  width: auto !important;
+}
+
+@media (max-width: 550px) {
+  .addTaskLeft {
+    width: auto !important;
+  }
+
+  .addTaskBody {
+    width: 100%;
+  }
+
+  #assingedList {
+    width: 300px !important;
+  }
+
+  .checkmark {
+    left: 200px !important;
+  }
+
+  .container {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,143 @@
+.detailCardCategory {
+  color: #ffffff;
+  border-radius: 8px;
+  padding-inline: 16px;
+  padding-block: 4px;
+  width: fit-content;
+  height: 28px;
+  overflow-y: hidden;
+}
+
+.detailCard {
+  background-color: #ffffff;
+  width: 525px;
+  height: 931px;
+  padding-block: 48px;
+  padding-inline: 40px;
+  border-radius: 30px;
+  font-size: 20px;
+  margin-block: 100px;
+  overflow-y: hidden;
+}
+
+.detailSection {
+  background-color: #00000029;
+  justify-content: center;
+}
+
+h2 {
+  font-size: 61px;
+  margin-block: 10px;
+}
+
+.detailDescription {
+  min-height: 24px;
+  text-wrap: wrap;
+  width: 445px;
+  margin-block: 10px;
+}
+
+.detailDate {
+  gap: 25px;
+  height: 24px;
+  width: 445px;
+  align-items: center;
+}
+
+.detailDue {
+  color: #2a3647;
+}
+
+.detailPrio {
+  height: 32px;
+  margin-block: 10px;
+  gap: 25px;
+  align-items: center;
+}
+
+.detailPr {
+  color: #2a3647;
+}
+
+li {
+  list-style: none;
+}
+
+.assignList {
+  height: 42px;
+  padding-block: 7px;
+  padding-inline: 16px;
+  width: 445px;
+  font-size: 19px;
+  align-items: center;
+}
+
+ul {
+  padding: 0;
+  margin-block: 10px;
+}
+
+.detailAssign {
+  height: 24px;
+}
+
+.detailSubtask {
+  height: 24px;
+  color: #2a3647;
+  margin-block: 10px;
+}
+
+.subtaskList {
+  height: 32px;
+  padding-inline: 16px;
+  padding-block: 6px;
+  gap: 16px;
+  align-items: center;
+  font-size: 16px;
+}
+
+.detailMiddleline {
+  height: 24px;
+  width: 0;
+  border: 1px solid #d1d1d1;
+}
+
+.detailDeleteEdit {
+  height: 24px;
+  gap: 8px;
+  justify-content: end;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.deleteEdit {
+  gap: 8px;
+  cursor: pointer;
+}
+
+.deleteEdit p {
+  font-size: 16px;
+  margin: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.detailPrioImg {
+  width: 17px;
+  height: 12px;
+}
+
+.dPrio {
+  gap: 10px;
+  align-items: center;
+}
+
+#overlay {
+  z-index: 99;
+}
+
+@media (max-height: 1110px) {
+  #overlay {
+    overflow-y: auto;
+  }
+}

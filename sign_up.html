@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join | Sign Up</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/logo_coloured.svg">
+    <link rel="stylesheet" href="./css/side_menu.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login-signup.css">
+    <script src="./js/signupdatabase.js"></script>
+    <script src="./js/signup.js"></script>
+    <script src="./js/contactsfirebase.js"></script>
+    <style> 
+    button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+</style>
+</head>
+<body>
+    <img class="logo-end" src="imgs/join_logo_dark.png" alt="join-logo">
+    <section class="container-login-signup dflex-c-c">
+        <div class="signup-mask dflex-c-c column">
+            <div class="dflex-c-c column">
+                <a href="./index.html" class="arrow-back">
+                    <img src="./assets/img/icon_back.svg" alt="arrow-left">
+                </a>
+                <h1>Sign up</h1>
+                <div class="text-line"></div>
+            </div>
+
+            <form onsubmit="return handleSignUp(event)" class="input-container">
+                <div>
+                    <input id="inputSignUpName" class="inputfield" type="text" placeholder="Name" required>
+                    <div id="inputSignUpNameError" class="error-message"></div>
+                </div>
+                
+                <div>
+                    <input id="inputSignUpMail" class="inputfield" type="email" placeholder="Email" required>
+                    <div id="inputSignUpMailError" class="error-message"></div>
+                </div>
+                
+                <div>
+                    <input id="inputSignUpPassword1" class="inputfield" type="password" placeholder="Password" required>
+                   
+                    <div id="inputSignUpPassword1Error" class="error-message"></div>
+                </div>
+                
+                <div>
+                    <input id="inputSignUpPassword2" class="inputfield" type="password" placeholder="Confirm Password" required>
+                    <div id="inputSignUpPassword2Error" class="error-message"></div>
+                </div>
+            
+                <div class="checkbox-signup">
+                    <input id="checkboxAccept" type="checkbox" name="remember-me" class="cp" required>
+                    <span>I accept the <a href="./privacy-policy.html">Privacy policy</a></span>
+                </div>
+            
+                <button type="submit" class="btn-small cp" id="signupButton" disabled>Sign up</button>
+            </form>
+        
+            
+        </div>
+        <div id="bgSignupSuccesfully" class="d-none dflex-c-c">
+            <div class="btn-signup-succesfully dflex-c-c">
+                You signed up successfully!
+            </div>
+        </div>
+    </section>
+    <section class="login-footer dflex-c-c">
+        <a href="./privacy-police.html">Privacy Policy</a>
+        <a href="./legal_notice.html">Legal Notice</a>
+    </section>
+
+    <script>
+/**
+ * Adds event listeners to input fields for email, name, and password validation.
+ * These listeners trigger the appropriate validation functions on input and blur events.
+ */
+document.getElementById('inputSignUpMail').addEventListener('input', validateEmailField);
+document.getElementById('inputSignUpMail').addEventListener('blur', validateEmailField);
+document.getElementById('inputSignUpName').addEventListener('input', validateNameField);
+document.getElementById('inputSignUpName').addEventListener('blur', validateNameField);
+document.getElementById('inputSignUpPassword1').addEventListener('input', validatePasswordField);
+document.getElementById('inputSignUpPassword1').addEventListener('blur', validatePasswordField);
+document.getElementById('inputSignUpPassword2').addEventListener('input', validateConfirmPasswordField);
+document.getElementById('inputSignUpPassword2').addEventListener('blur', validateConfirmPasswordField);
+
+const allowedDomains = [
+        ".at", ".be", ".bg", ".hr", ".cz", ".dk", ".ee", ".fi", ".fr", ".de", 
+        ".gr", ".hu", ".is", ".ie", ".it", ".lv", ".lt", ".lu", ".mt", ".nl", 
+        ".no", ".pl", ".pt", ".ro", ".sk", ".si", ".es", ".se", ".ch", ".uk", 
+        ".eu", ".com", ".net", ".org"
+    ];
+const emailInput = document.getElementById('inputSignUpMail');
+const errorMessage = document.getElementById('inputSignUpMailError');
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+/**
+ * Validates the email input field to ensure it matches a valid email format (e.g. example@domain.com).
+ * Checks if the domain ends with one of the allowed domain extensions.
+ * Displays an error message and adds an error class if the email is invalid.
+ */
+ function validateEmailField() {
+    const emailValue = emailInput.value.trim();
+    if (emailValue === "" || !emailPattern.test(emailValue)) {
+        emailInput.classList.add('error');
+        errorMessage.innerHTML = "Please enter a valid email (e.g., example@domain.com).";
+    } else {const isValidDomain = allowedDomains.some(domain => emailValue.endsWith(domain));
+        if (!isValidDomain) {
+            emailInput.classList.add('error');
+            errorMessage.innerHTML = "Please use a valid domain (e.g., .com, .org, .uk, etc.).";
+        } else {
+            emailInput.classList.remove('error');
+            errorMessage.innerHTML = "";
+}}}
+
+
+/**
+ * Validates the name input field to ensure it only contains letters and spaces.
+ * Displays an error message if the name contains invalid characters.
+ */
+function validateNameField() {
+    const nameInput = document.getElementById('inputSignUpName');
+    const errorMessage = document.getElementById('inputSignUpNameError');
+    const namePattern = /^[A-Za-zÄÖÜäöüß\s]+$/;
+
+    if (nameInput.value.trim() === "" || !namePattern.test(nameInput.value)) {
+        nameInput.classList.add('error');
+        errorMessage.innerHTML = "Please enter a valid name (letters and spaces only).";
+    } else {
+        nameInput.classList.remove('error');
+        errorMessage.innerHTML = ""
+    }
+}
+
+/**
+ * Validates the password input field to ensure it meets security requirements:
+ * at least 4 characters long, contains a  letter, or a number.
+ * Displays an error message if the password doesn't meet the requirements.
+ */
+ function validatePasswordField() {
+    const passwordInput = document.getElementById('inputSignUpPassword1');
+    const errorMessage = document.getElementById('inputSignUpPassword1Error');
+  
+    const passwordPattern = /^(?=.*[a-zA-Z]|\d).{4,}$/; 
+
+    if (passwordInput.value.trim() === "" || !passwordPattern.test(passwordInput.value)) {
+        passwordInput.classList.add('error');
+        errorMessage.innerHTML = "Password must be 4+ characters"
+    } else {
+        passwordInput.classList.remove('error');
+        errorMessage.innerHTML = ""
+    }
+}
+
+
+/**
+ * Validates the confirmation password input field to ensure it matches the first password input.
+ * Displays an error message if the passwords do not match.
+ */
+function validateConfirmPasswordField() {
+    const passwordInput = document.getElementById('inputSignUpPassword1');
+    const confirmPasswordInput = document.getElementById('inputSignUpPassword2');
+    const errorMessage = document.getElementById('inputSignUpPassword2Error');
+
+    if (confirmPasswordInput.value.trim() !== passwordInput.value.trim()) {
+        confirmPasswordInput.classList.add('error');
+        errorMessage.innerHTML = "Passwords do not match."
+    } else {
+        confirmPasswordInput.classList.remove('error');
+        errorMessage.innerHTML = ""
+    }
+}
+
+/**
+ * Handles the sign-up process by performing all necessary validations before creating the user.
+ * If all fields are valid, the user is saved and redirected to the next step.
+ * 
+ * @param {Event} event - The form submit event.
+ */
+async function handleSignUp(event) {
+    event.preventDefault(); 
+
+    const usersArray = await loadUsers();
+    const emailField = document.getElementById("inputSignUpMail");
+    const passwordField = document.getElementById("inputSignUpPassword1");
+    const confirmPasswordField = document.getElementById("inputSignUpPassword2");
+    const acceptCheckbox = document.getElementById("checkboxAccept");
+
+  // Check if the user has accepted the terms and conditions
+    if (!acceptCheckbox.checked) {
+        displayErrorMessage("You must accept the terms of use", acceptCheckbox);
+        return;
+    }
+
+   
+    if (!checkEmailAvailability(usersArray, emailField.value)) {
+        displayErrorMessage("Email is already registered", emailField);
+        return;
+    }
+
+    let newUser = buildUserObject();
+
+  
+    if (await verifyPassword(newUser, passwordField, confirmPasswordField)) {
+        showSuccessMessage();
+    }
+}
+
+
+/**
+ * Checks if the given email is already registered in the user database.
+ * 
+ * @param {Array} usersArray - The array of existing users.
+ * @param {string} email - The email to check.
+ * @returns {boolean} - Returns true if the email is available, false if already registered.
+ */
+async function checkEmailAvailability(usersArray, email) {
+    return !usersArray.some((user) => user.mail === email);
+}
+
+/**
+ * Verifies that the password and confirmation password match.
+ * Displays an error message if they do not match and returns false.
+ * If valid, it saves the user data.
+ * 
+ * @param {Object} user - The user object to be saved.
+ * @param {HTMLElement} passwordField - The password input field element.
+ * @param {HTMLElement} confirmPasswordField - The confirmation password input field element.
+ * @returns {boolean} - Returns true if the passwords match, false otherwise.
+ */
+async function verifyPassword(user, passwordField, confirmPasswordField) {
+    const password = passwordField.value.trim();
+    const confirmPassword = confirmPasswordField.value.trim();
+
+    if (!password || !confirmPassword) {
+        displayErrorMessage("Passwords cannot be empty", confirmPasswordField);
+        return false;
+    }
+    if (password === confirmPassword) {
+        await submitData("registration", user); 
+        return true;
+    } else {
+        displayErrorMessage("Passwords do not match", confirmPasswordField);
+        return false;
+    }
+}
+
+/**
+ * Loads the user data from a server or data source and returns it as an array.
+ * 
+ * @returns {Array} - An array of user objects.
+ */
+async function loadUsers() {
+    let usersArray = [];
+    let usersData = await fetchData("users");
+    for (let [userID, userData] of Object.entries(usersData || {})) {
+        userData.id = userID;
+        usersArray.push(userData);
+    }
+    return usersArray;
+}
+
+/**
+ * Displays an error message for invalid input.
+ * 
+ * @param {string} message - The error message to display.
+ * @param {HTMLElement} targetElement - The target element to highlight.
+ */
+function displayErrorMessage(message, targetElement) {
+    let errorElement = document.getElementById("passwordIncorrect");
+    errorElement.classList.remove("d-none");
+    errorElement.innerText = message;
+    targetElement.style.border = "2px solid red";
+}
+
+/**
+ * Builds a user object from the form data.
+ * 
+ * @returns {Object} - The newly created user object.
+ */
+function buildUserObject() {
+    let name = document.getElementById("inputSignUpName").value;
+    let email = document.getElementById("inputSignUpMail").value;
+    let password = document.getElementById("inputSignUpPassword1").value;
+    return { 
+        "first_name": name,
+        "email": email,
+        "password": password, 
+        "reapeated_password": password 
+    };
+}
+
+/**
+ * Displays a success message and redirects the user to the homepage.
+ */
+function showSuccessMessage() {
+    document.getElementById("bgSignupSuccesfully").classList.remove("d-none");
+    setTimeout(() => {
+        window.location.href = "./index.html"; // Weiterleitung zur Startseite nach 1.5 Sekunden
+    }, 1500);
+}
+
+/**
+ * Generates initials from the user's full name (e.g., "Max Mustermann" => "MM").
+ * 
+ * @param {string} name - The full name of the user.
+ * @returns {string} - The initials of the user.
+ */
+function getInitials(name) {
+    return name
+        .split(" ")
+        .filter(Boolean)
+        .map((word) => word[0].toUpperCase())
+        .join("");
+}
+
+/**
+ * Highlights an input field with an error state and displays an error message.
+ * 
+ * @param {string} inputId - The ID of the input field.
+ * @param {string} errorId - The ID of the error message element.
+ */
+function showError(inputId, errorId) {
+    const inputElement = document.getElementById(inputId);
+    const errorMessage = document.getElementById(errorId);
+
+    inputElement.classList.add('error');  
+    errorMessage.classList.add('show');   
+}
+
+/**
+ * Hides the error state and the error message for an input field.
+ * 
+ * @param {string} inputId - The ID of the input field.
+ * @param {string} errorId - The ID of the error message element.
+ */
+function hideError(inputId, errorId) {
+    const inputElement = document.getElementById(inputId);
+    const errorMessage = document.getElementById(errorId);
+
+    inputElement.classList.remove('error'); 
+    errorMessage.classList.remove('show');  
+}
+
+document.querySelectorAll('input').forEach(input => {
+  input.addEventListener('input', toggleSubmitButton);
+  input.addEventListener('blur', toggleSubmitButton);
+});
+
+document.getElementById('checkboxAccept').addEventListener('change', toggleSubmitButton);
+
+
+function toggleSubmitButton() {
+  const nameValid = document.getElementById('inputSignUpName').value.trim() !== "";
+  const emailValid = document.getElementById('inputSignUpMail').value.trim() !== "" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('inputSignUpMail').value);
+  const passwordValid = document.getElementById('inputSignUpPassword1').value.trim().length >= 4;
+  const passwordMatch = document.getElementById('inputSignUpPassword1').value === document.getElementById('inputSignUpPassword2').value;
+  const termsAccepted = document.getElementById('checkboxAccept').checked;
+
+  const isFormValid = nameValid && emailValid && passwordValid && passwordMatch && termsAccepted;
+
+  const signupButton = document.getElementById('signupButton');
+  signupButton.disabled = !isFormValid;
+}
+
+    </script>
+
+</body>
+</html>

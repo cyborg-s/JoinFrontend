@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join | Board</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./assets/img/logo_coloured.svg"
+    />
+    <link rel="stylesheet" href="./css/font.css" />
+    <link rel="stylesheet" href="./css/side_menu.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/board.css" />
+    <link rel="stylesheet" href="./css/boardDetailCard.css" />
+    <link rel="stylesheet" href="./css/addTask.css">
+    <link rel="stylesheet" href="./css/addTaskPopUp.css">
+    <link rel="stylesheet" href="./assets/templates/font/inter400.woff2" />
+    <link rel="stylesheet" href="./assets/templates/font/inter700.woff2" />
+    <link rel="stylesheet" href="./css/editTaskMenu.css">
+    <style type="text/css" id="operaUserStyle"></style>
+    <script src="./js/board.js"></script>
+    <script src="./js/taskEdit.js"></script>
+    <script src="./js/htmlTemplate.js"></script>
+    <script src="./js/addTask.js"></script>
+    <style>
+    </style>
+  </head>
+  <body id="body" onload="loadTasks()">
+    <div w3-include-html="./assets/templates/side_menu.html">
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Join</title>
+      <link
+        rel="icon"
+        type="image/x-icon"
+        href="./assets/img/logo_coloured.svg" />
+      <link rel="stylesheet" href="./css/side_menu.css" />
+      <link rel="stylesheet" href="./css/font.css" />
+      <link rel="stylesheet" href="./css/style.css" />
+      <meta charset="UTF-8" />
+      <script src="./js/dropDownMenuAndGoBack.js"></script>
+      <section id="Sidebar" class="sidebar">
+        <a href="summary.html">
+          <img src="./assets/img/logo.svg" class="logomenubar d-none-mobile" alt="logo_join">
+      </a>
+              <nav>
+          <a id="summary-link" href="./summary.html"
+            ><img src="./assets/img/icon_summary.svg" alt="Summary" />Summary</a
+          >
+          <a id="task-link" href="./add_task.html"
+            ><img src="./assets/img/icon_addTask.svg" alt="addtask" />Add
+            Task</a
+          >
+          <a class="highlight" id="board-link" href="./board.html"
+            ><img src="./assets/img/icon_board.svg" alt="board" />Board</a
+          >
+          <a id="link-contact" href="./contacts.html"
+            ><img
+              src="./assets/img/icon_contacts.svg"
+              alt="contacts"
+            />Contacts</a>
+        </nav>
+        <div class="bottom-menu-link d-none-mobile">
+          <a href="./privacy-police.html" onclick="saveTheUrl()">Privacy Policy</a>
+          <a href="./legal_notice.html">Legal notice</a>
+        </div>
+      </section>
+    </div>
+    <main id="main">
+      <div
+        w3-include-html="./assets/templates/header.html"
+        class="fixed-header" >
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Join</title>
+        <link
+          rel="icon"
+          type="image/x-icon"
+          href="./assets/img/logo_coloured.svg" />
+        <link rel="stylesheet" href="./css/header.css" />
+        <link rel="stylesheet" href="./css/font.css" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/side_menu.css">
+        <meta charset="UTF-8" />
+      <header id="header">
+        <a href="summary.html">
+          <img src="imgs/mobile-header-logo.png" alt="Join logo" class="mobile-logo">
+      </a>
+        <p class="header-description d-none-mobile">Kanban Project Management Tool</p>
+        <div class="header-right">
+          <a href="./help.html" class="help-img-link cp"><img src="./assets/img/icon_help.svg" alt="help" class="d-none-mobile"></a>
+          <div onclick="showDropdownMenu()" class="header-right-user dflex-c-c cp" id="userInitials"><div>G</div></div>
+        </div>
+      </header>
+
+      
+      </section>
+      <section id="headerDropdownOption" class="d-noneHead">
+        <div class="headerDropdownOption">
+          <a href="./legal_notice.html">Legal Notice</a>
+          <a href="./privacy-police.html">Privacy Policy</a>
+          <a onclick="logout()">Log out</a>
+        </div>
+      </section>
+      </div>
+      <section class="content-section">
+        <div class="header d-flex">
+          <h1 class="headerMobile">Board</h1>
+          <div class="d-flex headerRight">
+            <div class="findTask">
+              <input
+                class="findTaskInput"
+                oninput="filterTasks('findTaskInput')"
+                id="findTaskInput"
+                type="text"
+                placeholder="Find Task"/>
+              <div class="findTaskImg d-flex">
+                <img
+                  onclick="focusInput('findTaskInput')"
+                  class="taskSearch"
+                  src="./assets/img/icon_search.svg"
+                  alt="Search"/>
+              </div>
+            </div>
+            <button class="addTask d-center" onclick="fillAddTaskPopUp('toDo')">
+              Add task
+              <img class="addPlus" src="./assets/img/icon_add.svg" alt="" />
+            </button>
+            <a class="addTaskMobile d-center" href="./add_task.html">
+              <img class="addPlus" src="./assets/img/icon_add.svg" alt="" />
+            </a>
+          </div>
+        </div>
+        <div class="mobileSearch">
+          <div class="findTaskMobile">
+            <input
+              class="findTaskInput"
+              oninput="filterTasks('findTaskInputMobile')"
+              id="findTaskInputMobile"
+              type="text"
+              placeholder="Find Task"/>
+            <div class="findTaskImg d-flex" onclick="focusInput('findTaskInputMobile')">
+              <img
+                class="taskSearch"
+                src="./assets/img/icon_search.svg"
+                alt="Search"/>
+            </div>
+          </div>
+        </div>
+        <div class="columnHeadLine d-flex">
+          <div class="column d-flex">
+            <div class="d-flex columnHead">
+              <h2>To do</h2>
+              <img
+                class="c-pointer plusImg"
+                onclick="fillAddTaskPopUp('toDo')"
+                src="./assets/img/plusbutton.svg"
+                alt="Add"/>
+              <a class="plusImgMobile" href="./add_task.html"><img
+                class="c-pointer plusImgMobile"
+                src="./assets/img/plusbutton.svg"
+                alt="Add"/>
+              </a>
+            </div>
+            <div id="toDo" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)" class="dropSection">
+            </div>
+          </div>
+          <div class="column d-flex">
+            <div class="d-flex columnHead">
+              <h2>In Progress</h2>
+              <img
+                class="c-pointer plusImg"
+                onclick="fillAddTaskPopUp('inProgress')"
+                src="./assets/img/plusbutton.svg"
+                alt="Add"/>
+              <a class="plusImgMobile" href="./add_task.html"><img
+                class="c-pointer plusImgMobile"
+                src="./assets/img/plusbutton.svg"
+                alt="Add"
+              /></a>
+            </div>
+            <div id="inProgress" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)" class="dropSection ">
+            </div>
+          </div>
+          <div class="column d-flex">
+            <div class="d-flex columnHead">
+              <h2>Await feedback</h2>
+              <img
+                class="c-pointer plusImg"
+                onclick="fillAddTaskPopUp('awaitFeedback')"
+                src="./assets/img/plusbutton.svg"
+                alt="Add"/>
+              <a class="plusImgMobile" href="./add_task.html"><img
+                class="c-pointer plusImgMobile"
+                src="./assets/img/plusbutton.svg"
+                alt="Add"/>
+              </a>
+            </div>
+            <div id="awaitFeedback" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)" class="dropSection">
+            </div>
+          </div>
+          <div class="column d-flex">
+            <div class="d-flex columnHead">
+              <h2>Done</h2>
+            </div>
+            <div id="done" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)" class="dropSection">
+            </div>
+          </div>
+        </div>
+      </section>
+      <div
+        id="overlay"
+        class="d-none detailSection"
+        onclick="closeDetailCard(event)"
+      ></div>
+      <div id="addTaskSectionBackground" class="addTaskBackground d-none">
+      <div id="addTaskSection" class="addTaskSection"></div>
+      </div>
+    </main>
+<script>
+  const user = JSON.parse(localStorage.getItem('user'));
+  
+  if (!user) {
+    window.location.href = './index.html';
+  }
+  
+  function getInitials(name) {
+    const nameParts = name.trim().split(' ');
+    if (nameParts.length === 1) {
+      return nameParts[0].charAt(0).toUpperCase();
+    }
+    return nameParts[0].charAt(0).toUpperCase() + nameParts[1].charAt(0).toUpperCase(); 
+  }
+  
+  const initials = getInitials(user.name || 'G');
+  
+  const userInitialsDiv = document.getElementById('userInitials');
+  if (userInitialsDiv) {
+    userInitialsDiv.querySelector('div').textContent = initials;
+  }
+  </script>
+  </body>
+</html>

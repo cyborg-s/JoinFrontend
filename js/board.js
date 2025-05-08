@@ -6,23 +6,6 @@ let BASE_URL = "http://127.0.0.1:8000/join/tasks/";
  * and updates the `task` array. If no data is received, logs an error. 
  * After loading tasks, it renders the tasks and loads contacts.
  */
-// async function loadTasks() {
-//   try {
-//     const response = await fetch(`${BASE_URL}`);
-//     if (!response.ok) {throw new Error(`Fehler beim Laden der Daten: ${response.statusText}`);}
-//     const taskData = await response.json();
-//     if (!taskData) {console.error("Keine Daten aus Firebase erhalten oder Daten sind leer.");
-//       return;}
-//     task.length = 0;
-//     for (const key in taskData) {
-//       if (taskData.hasOwnProperty(key)) {
-//         task.push(taskData[key]);
-//       }}
-//   } catch (error) {console.error("Fehler beim Laden der Daten:", error);}
-//   render();
-//   loadContacts();
-// }
-
 async function loadTasks() {
   try {
     // Angenommene URL zum Django Backend

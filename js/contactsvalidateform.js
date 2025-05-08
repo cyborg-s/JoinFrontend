@@ -80,7 +80,6 @@ function validateEditField(fieldID) {
   } else {
     hideErrorMessage(`${fieldID}Error`);
   }
-  // updateeditSubmitButtonState();
 }
 
 /**

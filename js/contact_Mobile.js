@@ -127,7 +127,6 @@ function resetErrorMessages() {
     const errorElements = document.querySelectorAll('.error-message');
     errorElements.forEach(element => {
         element.innerText = '';
-        element.style.display = 'none';
     });
 }
 
@@ -139,7 +138,7 @@ function checkFormFields() {
     const field2 = document.getElementById('editEmail').value.trim();
     const field3 = document.getElementById('editTel').value.trim();
     const submitButton = document.getElementById('editSubmit');
-    submitButton.disabled = !(field1 && field2 && field3.length === 13);
+    submitButton.disabled = !(field1 && field2 && validateInput('editTel', field3));
   }
 
 /**
@@ -150,7 +149,7 @@ function checkFormFields() {
     const field2 = document.getElementById('email').value.trim();
     const field3 = document.getElementById('tel').value.trim();
     const submitButton = document.getElementById('createSubmit');
-    submitButton.disabled = !(field1 && field2 && field3.length === 13);
+    submitButton.disabled = !(field1 && field2 && validateInput('tel', field3));
   }
 
 
@@ -187,17 +186,22 @@ function createNewContact(event) {
  * @param {*} tel 
  * @param {*} isValid 
  */
-function pushCreateNewContact(name, email, tel, isValid){
-    contactList = []
+async function pushCreateNewContact(name, email, tel, isValid) {
+    contactList = [];
     if (isValid) {
         let button = document.getElementById("createSubmit");
         button.disabled = true;
         const nextColor = selectNextColor();
-        let data = {"name": name, "email": email, "phone": tel};
+        let data = { "name": name, "email": email, "phone": tel };
         contactList.push(data);
-        submitContact('contact');
-        openClosePopUp('close');
-        emptyValue();
+
+        const success = await submitContact('contact');
+        if (success) {
+            openClosePopUp('close');
+            emptyValue();
+        } else {
+            button.disabled = false; 
+        }
     }
 }
 
@@ -278,21 +282,31 @@ async function removeContact(id) {
  * @param {string} path - The server endpoint path for submission.
  */
 async function submitContact(path) {
+    const token = JSON.parse(localStorage.getItem('user')).token;
+    const telErrorDiv = document.getElementById("telError");
+    telErrorDiv.innerHTML = "";
     for (const element of contactList) {
         selectedContact = element;
         const response = await fetch(`${BASE_URL}`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Token ${token}`
+             },
             body: JSON.stringify(element)
         });
         const responseData = await response.json();
         if (!response.ok) {
-            console.error("Fehler beim Speichern:", responseData);
-            console.log("Fehler beim Speichern: " + JSON.stringify(responseData));
+            if (responseData.phone) {
+                telErrorDiv.innerHTML = `Fehler: ${responseData.phone.join(", ")}`;
+            } else {
+                telErrorDiv.innerHTML = "Ein Fehler ist beim Speichern aufgetreten.";
+            }
             return;
         }
     }
     fetchData();
+    return true;
 }
 
 /**

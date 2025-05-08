@@ -1,4 +1,5 @@
 let BASE_Url = "http://127.0.0.1:8000/join/tasks/";
+let token = JSON.parse(localStorage.getItem('user')).token;
 
 let taskA = []
 
@@ -291,6 +292,10 @@ async function deleteSubTask(index) {
     try {
       const response = await fetch(`http://127.0.0.1:8000/join/subtasks/${subtaskToDelete.id}/`, {
         method: 'DELETE',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Token ${token}`
+        },
       });
 
       if (!response.ok) {
@@ -404,6 +409,7 @@ async function postData(path = "", data = {}) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Token ${token}`
       },
       body: JSON.stringify(payload), // automatisch korrektes JSON
     });

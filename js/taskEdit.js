@@ -8,7 +8,10 @@ async function deleteTask(id) {
     try {
       const response = await fetch(firebaseURL, {
           method: 'DELETE',
-          headers: {'Content-Type': 'application/json'}
+          headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Token ${token}`
+          }
       });
       if (response.ok) {
           location.reload();
@@ -89,7 +92,10 @@ async function deleteForEdit(path) {
     try {
       const response = await fetch(firebaseURL, {
           method: 'DELETE',
-          headers: {'Content-Type': 'application/json'}
+          headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Token ${token}`
+          }
       });
       if (response.ok) {
       } else {console.error('Fehler beim Löschen des Tasks:', response.statusText);}
@@ -123,6 +129,7 @@ async function deleteForEdit(path) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Token ${token}`
       },
       body: JSON.stringify(payload), // automatisch korrektes JSON
     });

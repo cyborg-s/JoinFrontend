@@ -15,8 +15,8 @@ function validateInput(variable, value) {
     return emailPattern.test(value);
   }
   if (variable === "tel" || variable === "editTel") {
-    const phonePattern = /^\+[0-9]+$/;
-    return phonePattern.test(value) && value.length === 13;
+    const phonePattern = /^\+[1-9]\d{6,14}$/;
+    return phonePattern.test(value);
   }
   return false;
 }
@@ -95,6 +95,6 @@ function checkErrorText(fieldID) {
   } else if (fieldID == "editEmail" || fieldID === "email") {
     return "Please select a valid e-mail address (beispiel@domain.com).";
   } else if (fieldID == "editTel" || fieldID === "tel") {
-    return "Please enter a valid phone number (starting with + & 10 digits).";
+    return "Please enter a valid phone number (starting with + ).";
   }
 }

@@ -129,8 +129,8 @@ function getInitials(name) {
  * Then redirects the user to the summary page.
  */
 async function guestLogin() {
-  const email = "Guest@Guest.de";
-  const password = "GuestLogIn";
+  const email = "guest@example.com";
+  const password = "guestpassword123";
   const remember = document.getElementById("remember-me");
   try {
     const response = await fetch("http://localhost:8000/join/api-token-auth/", {

@@ -364,7 +364,10 @@ async function updateCheckboxStateInFirebase(checkboxId, taskId) {
     `http://127.0.0.1:8000/join/subtasks/${task[taskId].subtasks[checkboxId].id}/`,
     {
       method: "PUT",
-      headers: {"Content-Type": "application/json",},
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Token ${token}`
+      },
       body: JSON.stringify({title: subtask.title,
         status: checkbox.checked
       }),
@@ -386,6 +389,7 @@ async function updatePosition(path = "", data = {}) {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Token ${token}`
     },
     body: JSON.stringify(data),
   });

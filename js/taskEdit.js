@@ -114,9 +114,10 @@ async function deleteForEdit(path) {
     button.disabled = true;
     let template = putTemplate(positionID);
     let pk = document.getElementById(`primaryKey${id}`).innerHTML
-    putData(pk, template)
+    await putData(pk, template)
     closeDetailCardX();
-    loadTasks();
+    await loadTasks();
+    render();
   }
 
   async function putData(id, data){

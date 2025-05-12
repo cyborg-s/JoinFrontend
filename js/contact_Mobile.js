@@ -275,6 +275,12 @@ async function removeContact(id) {
     }
 }
 
+
+async function removeContactBtn(contactId){
+    await removeContact(contactId);
+    openClosePopUp("close", (key = true));
+}
+
 /**
  * Submits contact data to the server.
  * 

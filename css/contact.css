@@ -508,10 +508,6 @@ h2 {
   font-size: larger;
 }
 
-.contact_button button:last-child {
-  border: none;
-}
-
 .addContactButton:hover {
   background-color: rgb(41, 171, 226);
   transition: 150ms;

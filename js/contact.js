@@ -162,7 +162,7 @@ function showDetailedContact(contactId) {
     document.getElementById(currentEditKey).classList.add('blueBackground');
     let target = document.getElementById('content');
     target.innerHTML = contactInfoHtml(root, contactId);
-    setEditPopupContent(root);
+    setEditPopupContent(root, contactId);
     checkScreenSize();
     applyBackgroundColor(contactId);
 }
@@ -179,12 +179,12 @@ function updateDetail(){
  * 
  * @param {Object} root - The contact data to populate the popup.
  */
-function setEditPopupContent(root) {
+function setEditPopupContent(root, contactId) {
     document.getElementById('letterForPopUp').innerHTML = `${root['name'][0]}`;
     document.getElementById('editName').value = root['name'];
     document.getElementById('editEmail').value = root['email'];
     document.getElementById('editTel').value = root['phone'];
-
+    document.getElementById('delBtn').innerHTML = `<button onclick="removeContactBtn(${contactId})" type="button" class="cancel-Button">Delete <img src="./contact-assets/img/close.png" alt=""></button>`
 }
 
 /**
